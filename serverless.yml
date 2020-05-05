@@ -1,0 +1,35 @@
+service:
+  name: movies-service
+
+custom:
+  stage: dev
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${self:custom.stage}
+  region: eu-central-1
+  apiGateway:
+    minimumCompressionSize: 1024
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+
+functions:
+  handler:
+    handler: src/endpoints/handler.handler
+    events:
+      - http:
+          path: /
+          method: GET
+          cors: true
