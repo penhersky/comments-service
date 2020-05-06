@@ -4,7 +4,8 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
-    "sls": "serverless deploy"
+    "sls": "serverless deploy",
+    "test": "jest"
   },
   "dependencies": {
     "aws-lambda": "1.0.6",
