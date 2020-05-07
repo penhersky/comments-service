@@ -1,7 +1,7 @@
 import 'source-map-support/register';
+import useHooks from '../common/hooks';
 
-// eslint-disable-next-line import/prefer-default-export
-export const handler = async (event: any) => ({
+const lambda = async (event: any): Promise<any> => ({
   statusCode: 200,
   body: JSON.stringify(
     {
@@ -12,3 +12,6 @@ export const handler = async (event: any) => ({
     2,
   ),
 });
+
+// eslint-disable-next-line import/prefer-default-export
+export const handler = useHooks.useLambdaHook(lambda);

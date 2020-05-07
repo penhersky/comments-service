@@ -15,6 +15,7 @@ const responses = {
 
   C400: (data = {}) => defineResponse(400, data),
   C404: (data = {}) => defineResponse(404, data),
+  C500: (data = {}) => defineResponse(404, { ...data, error: 'Server Error' }),
 };
 
 export default responses;
