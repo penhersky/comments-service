@@ -26,6 +26,9 @@ provider:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
 
 functions:
+  verifyToken:
+    handler: src/auth/verifyToken.handler
+
   handler:
     handler: src/endpoints/handler.handler
     events:
@@ -33,3 +36,7 @@ functions:
           path: /
           method: GET
           cors: true
+          authorizer:
+            name: verifyTokenToken
+            type: request
+            identitySource: method.request.header.X-Amz-Security-Token
